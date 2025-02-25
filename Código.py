@@ -1,16 +1,15 @@
 import streamlit as st
 from openai import OpenAI
-import os
 import io
 import base64
 from PIL import Image
-from dotenv import load_dotenv
 
-# Carregar variáveis de ambiente
-load_dotenv()
+# Definir a chave da API diretamente no código (⚠️ NÃO RECOMENDADO PARA PRODUÇÃO)
+OPENAI_API_KEY = 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
+
 
 # Inicializar o cliente da OpenAI
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 def encode_image(image):
     """Codifica a imagem em base64 para envio à API."""
