@@ -61,7 +61,7 @@ if st.button("Analisar Problema"):
         """
         
         # Chamada à API
-        response = openai.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-4-turbo",
             messages=[
                 {"role": "system", "content": "És um mecânico automotivo especializado em diagnóstico de problemas."},
