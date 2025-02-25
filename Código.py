@@ -5,7 +5,7 @@ import base64
 from PIL import Image
 
 # Definir a chave da API diretamente no código (⚠️ NÃO RECOMENDADO PARA PRODUÇÃO)
-OPENAI_API_KEY = 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
+OPENAI_API_KEY = "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"
 
 
 # Inicializar o cliente da OpenAI
