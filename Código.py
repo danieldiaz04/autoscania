@@ -4,6 +4,9 @@ from PIL import Image
 import io
 import base64
 
+# Instalar dependências (somente para garantir que estão presentes)
+os.system("pip install streamlit openai pillow")
+
 # Configurar API Key da OpenAI (substituir pela tua chave)
 openai.api_key = "SUA_CHAVE_AQUI"
 
