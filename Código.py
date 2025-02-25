@@ -1,21 +1,23 @@
 import streamlit as st
 import openai
-from PIL import Image
+import os
 import io
 import base64
+from PIL import Image
+from dotenv import load_dotenv
 
-# Instalar dependências (somente para garantir que estão presentes)
-os.system("pip install streamlit openai pillow")
-
-# Configurar API Key da OpenAI (substituir pela tua chave)
-openai.api_key = "SUA_CHAVE_AQUI"
+# Carregar variáveis de ambiente
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def encode_image(image):
+    """Codifica a imagem em base64 para envio à API."""
     img_byte_arr = io.BytesIO()
-    image.save(img_byte_arr, format='JPEG')
-    return base64.b64encode(img_byte_arr.getvalue()).decode('utf-8')
+    image.save(img_byte_arr, format="JPEG")
+    return base64.b64encode(img_byte_arr.getvalue()).decode("utf-8")
 
 def transcribe_audio(audio_file):
+    """Transcreve um ficheiro de áudio usando a API Whisper da OpenAI."""
     audio_bytes = audio_file.read()
     response = openai.Audio.transcribe(
         model="whisper-1",
@@ -60,7 +62,7 @@ if st.button("Analisar Problema"):
         
         # Chamada à API
         response = openai.ChatCompletion.create(
-            model="gpt-4-vision-preview",
+            model="gpt-4-turbo",
             messages=[
                 {"role": "system", "content": "És um mecânico automotivo especializado em diagnóstico de problemas."},
                 {"role": "user", "content": prompt},
@@ -73,4 +75,3 @@ if st.button("Analisar Problema"):
         # Exibir resposta
         st.subheader("Diagnóstico do Problema")
         st.write(response["choices"][0]["message"]["content"])
-
